@@ -10,7 +10,7 @@ The data used for this project is a bank marketing campaign dataset using which 
 
 Two different experminets were conducted - the first experiment was performed using **Hyperdrive** to search for the best hyperparameters while the second was was performed using **AutoML**. 
 
-The best model was selected by using **Accuracy** as the primary metric of comparison.The best performing model was produced by the **AutoML** run and the model used **VotingEnsemble** technique and the underlying classifier was **LightGBM**. The **Accuracy** of the model is **91.76%**.
+The best model was selected by using **Accuracy** as the primary metric of comparison. The best model,produced by the **AutoML** run, used **VotingEnsemble** technique and the underlying classifier was **LightGBM**. The **Accuracy** of the model is **91.76%**.
 
 ## Scikit-learn Pipeline
 The dataset is initially cleaned and prepared for modelling. Some of the cleaning steps were converting categorical features to numerical features using one hot encoding or encoding them as binary encoded features. After cleaning the dataset and preparing the input columns, the data is split into train and test datasets. **30%** of the data was used as the testing dataset.
