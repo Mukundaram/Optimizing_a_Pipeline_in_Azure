@@ -8,7 +8,9 @@ This model is then compared to an Azure AutoML run.
 ## Summary
 The data used for this project is a bank marketing campaign dataset using which we can predict whether a given client would subscribe to a term deposit or not. It contains the clients' personal and demographic details, social and economic context attributes along with the marketing campaigns details which were based on phone calls.
 
-Two different experminets were conducted - the first experiment was performed using **Hyperdrive** to search for the best hyperparameters while the second was was performed using **AutoML**. The best model was selected by using **Accuracy** as the primary metric of comparison.The best performing model was produced by the **AutoML** run and the model used **VotingEnsemble** technique and the underlying classifier was **LightGBM**. The **Accuracy** of the model is **91.76%**.
+Two different experminets were conducted - the first experiment was performed using **Hyperdrive** to search for the best hyperparameters while the second was was performed using **AutoML**. 
+
+The best model was selected by using **Accuracy** as the primary metric of comparison.The best performing model was produced by the **AutoML** run and the model used **VotingEnsemble** technique and the underlying classifier was **LightGBM**. The **Accuracy** of the model is **91.76%**.
 
 ## Scikit-learn Pipeline
 The dataset is initially cleaned and prepared for modelling. Some of the cleaning steps were converting categorical features to numerical features using one hot encoding or encoding them as binary encoded features. After cleaning the dataset and preparing the input columns, the data is split into train and test datasets. **30%** of the data was used as the testing dataset.
@@ -22,12 +24,14 @@ The **regularization hyperparameter (C)** helps to control or prevent model over
 The **bandit termination policy** helps us to avoid unnecessary runs by stopping the iteration early whenever the primary metric falls outside the slack factor threshold. This will further ensure that every run will give us a better metric than the previous one.
 
 The best model was generated using the **regularization strength(C) as 0.01** and the **maximum number of iterations(max_iter) as 25**.  The **Accuracy** of this model was **91.34%**.
+
 ![Best model - Hyperdrive](https://github.com/Mukundaram/nd00333_AZMLND_Optimizing_a_Pipeline_in_Azure-Starter_Files/blob/master/Ouput_images/Hyperdrive_best_run.PNG "Best model overview - Hyperdrive")
 
 ## AutoML
 For the AutoML run, we first configure the run by selecting the dataset, column to predict, the metric to optimize (Accuracy) and the type of task to perform which is classfication in this case along with other parameters like maximum iterations to perform and experiment timeout minutes. We then submit the experiment method and pass the run configuration.. 
 
 In this case, the **VotingEnsemble Algorithm** turned out to be the best model with the underlying classifier being **LightGBM**. It yielded an **Accuracy** of **91.76%**.
+
 ![Best model - AutoML](https://github.com/Mukundaram/nd00333_AZMLND_Optimizing_a_Pipeline_in_Azure-Starter_Files/blob/master/Ouput_images/AutoML_best_model_metrics.PNG "Best model overview - AutoML")
 
 ## Pipeline comparison
@@ -45,4 +49,5 @@ Moreover, Hyperdrive was configured to use only Logistic Regression as the model
 
 ## Proof of cluster clean up
 After running the experiments, the compute cluster was deleted.
+
 [Cluster cleanup](https://github.com/Mukundaram/nd00333_AZMLND_Optimizing_a_Pipeline_in_Azure-Starter_Files/blob/master/Ouput_images/Cluster_cleanup.PNG)
