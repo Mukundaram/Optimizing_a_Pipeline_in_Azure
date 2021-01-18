@@ -17,11 +17,13 @@ The dataset is initially cleaned and prepared for modelling. Some of the cleanin
 
 **Logistic Regression** was selected as the model of choice for preforming the **classification task** and **Accuracy** was selected as the metric to optimize.
 
-Furthermore, for **hyperparameter tuning** using **Hyperdrive**, the hyperparameter space was defined for **C** and **max_iter** parameters. **RandomParameterSampling** was used to search over different sets of hyperparameters to maximize our primary metric. 
+Furthermore, for **hyperparameter tuning** using **Hyperdrive**, the hyperparameter space was defined for **C** and **max_iter** parameters.
 
 The **regularization hyperparameter (C)** helps to control or prevent model overfitting. For small values of C, we increase the regularization strength which will create simple models which underfit the data. For big values of C, we reduce the power of regularization which implies the model is allowed to increase its complexity, and therefore, overfit the data. The **maximum iterations hyperparameter** helps us to find out the ideal number of iterations for the model to converge.
 
 The **bandit termination policy** helps us to avoid unnecessary runs by stopping the iteration early whenever the primary metric falls outside the slack factor threshold. This will further ensure that every run will give us a better metric than the previous one.
+
+**RandomParameterSampling** was used to search over different sets of hyperparameters. It will help us choose parameter values at random over the defined range of values. This type of parameter sampling is ideal for cases where we want to conserve or use limited computing resources and also increase the model performance using the metrics of choice.
 
 The best model was generated using the **regularization strength(C) as 0.01** and the **maximum number of iterations(max_iter) as 25**.  The **Accuracy** of this model was **91.34%**.
 
@@ -30,9 +32,13 @@ The best model was generated using the **regularization strength(C) as 0.01** an
 ## AutoML
 For the AutoML run, we first configure the run by selecting the dataset, column to predict, the metric to optimize (Accuracy) and the type of task to perform which is classification in this case along with other parameters like maximum iterations to perform and experiment timeout minutes. We then submit the experiment method and pass the run configuration.
 
-In this case, the **VotingEnsemble Algorithm** turned out to be the best model with the underlying classifier being **LightGBM**. It yielded an **Accuracy** of **91.76%**.
+In this case, the **VotingEnsemble Algorithm**  yielded an accuracy of **91.76%** and turned out to be the best model with the underlying classifier being **LightGBM**. Ensemble models improves machine learning results and predictive performance by combining multiple models as opposed to using single models. **VotingEnsemble Algorithm** predicts based on the weighted average of predicted class probabilities for classification tasks. In Azure AutoML, the ensemble iterations appear as the final iterations of the run after running all the individual models initially.
 
 ![Best model - AutoML](https://github.com/Mukundaram/nd00333_AZMLND_Optimizing_a_Pipeline_in_Azure-Starter_Files/blob/master/Ouput_images/AutoML_best_model_metrics.PNG "Best model overview - AutoML")
+
+The parameters of the **VotingEnsemble** model with the underlying **LightGBM** classifier is shown in the image below:
+
+![Best model params - AutomML](https://github.com/Mukundaram/Optimizing_a_Pipeline_in_Azure/blob/master/Ouput_images/AutoML_Best_Model_parameters.PNG "Best model params - AutoML")
 
 ## Pipeline comparison
 AutoML gave us the best model for this dataset although the **Accuracy** of two best models using AutoML and Hyperdrive was almost the same. The difference in accuracy was 0.42%. The **Logistic regression** model is comparitively simpler in nature than the **VotingEnsemble** which combines the prediction of multiple weak learners to improve the models' ability. 
